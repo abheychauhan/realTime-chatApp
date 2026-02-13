@@ -6,7 +6,7 @@ import axios from "../src/utils/axios";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
 
-const ENDPOINT = "https://realtime-chatapp-799u.onrender.com"
+const ENDPOINT = "https://realtime-chatapp-u34e.onrender.com"
 var socket, selectedChatCompare;
 
 function ChatBox() {
