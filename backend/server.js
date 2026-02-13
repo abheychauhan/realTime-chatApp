@@ -9,7 +9,8 @@ connectDB();
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-      "http://localhost:5173"
+      "http://localhost:5173",
+      "https://real-time-chat-app-azure-two.vercel.app"
     ];
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
@@ -53,7 +54,7 @@ const server = app.listen(process.env.PORT, () => {
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://real-time-chat-app-azure-two.vercel.app",
     },
 });
 
