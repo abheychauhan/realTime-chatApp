@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+.loader{
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.navbar{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.322);
+  border-radius: 10px;
+}
+
+.mychats , .chatbox {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.322);
+  padding: 20px;
+  border-color: rgba(167, 166, 166, 0.527);
+}
+
+.message-area {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.322);
+  padding: 20px;
+}
+.message-area::-webkit-scrollbar {
+  display: none;
+}
+.mychat::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media (max-width: 850px) {
+
+
+
+
+}
+
