@@ -5,6 +5,7 @@ import SingleChat from "./SingleChat";
 import axios from "../src/utils/axios";
 import { useEffect } from "react";
 import { io } from "socket.io-client";
+import Picker from "emoji-picker-react";
 
 const ENDPOINT = "https://realtime-chatapp-u34e.onrender.com"
 var socket, selectedChatCompare;
@@ -18,6 +19,7 @@ function ChatBox() {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const [newMessage, setNewMessage] = useState("")
 
@@ -94,6 +96,12 @@ function ChatBox() {
 
 
 
+  const onEmojiClick = (emojiData) => {
+    setNewMessage(prev => prev + emojiData.emoji); 
+  };
+
+
+
 const sendMessage = async () => {
   if (!newMessage.trim()) return;
 
@@ -118,6 +126,7 @@ const sendMessage = async () => {
     socket.emit("new message", res.data);
     setMessages((prev) => [...prev, res.data]);
     setNewMessage("");
+    setShowEmojiPicker(false)
   } catch (err) {
     console.log("Error sending message:", err);
   }
@@ -127,6 +136,7 @@ const handleKeyDown = (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
     sendMessage();
+    setShowEmojiPicker(false)
   }
 };
 
@@ -208,6 +218,14 @@ const handleKeyDown = (e) => {
 
       {/* Input Area */}
       <div className="p-4 border-t border-gray-300 bg-white flex gap-2">
+
+         {showEmojiPicker && (
+          <div className="absolute top-35  md:bottom-20 left-4 z-50">
+            <Picker onEmojiClick={onEmojiClick} />
+          </div>
+        )}
+         <button onClick={() => setShowEmojiPicker(prev => !prev)} className="text-2xl">😊</button>
+
 
         <input
           type="text"
